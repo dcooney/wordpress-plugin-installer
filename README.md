@@ -1,8 +1,8 @@
 # wordpress-plugin-installer
 
-The Connekt Plugin Installer is a Class for displaying a list of recommended or required plugins inside of a users WordPress admin. 
+The Connekt Plugin Installer is a Class for displaying a list of recommended or related plugins inside of the WordPress admin. 
 
-The installer displays a list of plugins that users can easily install and activate directly for the screen they are currently viewing. 
+The installer displays a list of plugins that users can easily install and activate directly from the screen they are currently viewing. 
 
 ![Connekt Plugin Installer Example](http://examples.connekthq.com/_gif/plugin-installer_2.gif)
 
