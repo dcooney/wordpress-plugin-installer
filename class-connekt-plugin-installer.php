@@ -18,8 +18,9 @@ if( !class_exists('Connekt_Plugin_Installer') ) {
    class Connekt_Plugin_Installer {
 
       public function start(){
-
-         define('CNKT_INSTALLER_PATH', plugins_url('/', __FILE__));
+			if(!defined('CNKT_INSTALLER_PATH')){
+				define('CNKT_INSTALLER_PATH', plugins_url('/', __FILE__));
+			}
          add_action( 'admin_enqueue_scripts', array(&$this, 'enqueue_scripts' )); // Enqueue scripts
          add_action( 'admin_head', array(&$this, 'localize_admin' )); // Localization scripts
          add_action( 'wp_ajax_cnkt_plugin_installer', array(&$this, 'cnkt_plugin_installer' )); // Install plugin
