@@ -8,10 +8,6 @@ The installer displays a list of plugins that users can easily install and activ
 
 This is a perfect tool for plugin and theme developers who want users to make it as easy as possible for users to install related plugins.
 
-**Plugins _must_ be available on the wordpress.org plugin repository to be installed and activated using this Class**
-
-
-***
 
 ## Getting Started
 
@@ -27,7 +23,7 @@ include_once('vendor/connekt-plugin-installer/class-connekt-plugin-installer.php
 
 
 ### Display
-Next you need to build an array of plugin slugs and pass the array to the `Connekt_Plugin_Installer` Class for display.
+Next, you need to build an array of plugin slugs and pass the array to the `Connekt_Plugin_Installer` Class for display.
 
 ```php
 $plugin_array = array(   			
@@ -49,3 +45,8 @@ if(class_exists('Connekt_Plugin_Installer')){
    Connekt_Plugin_Installer::init($plugin_array);
 }
 ```
+
+## Notes
+- Plugins _must_ be available on the wordpress.org plugin repository to be installed and activated using this Class
+
+
