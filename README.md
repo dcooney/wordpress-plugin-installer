@@ -8,20 +8,26 @@ The installer displays a list of plugins that users can easily install and activ
 
 This is a perfect tool for plugin and theme developers who want users to make it as easy as possible for users to install related plugins.
 
+**Plugins _must_ be available on the wordpress.org plugin repository to be installed and activated using this Class**
 
-**Plugins must be available on the wordpress.org plugin repository to be installed and activated using this class**
 
-To display a list of plugins you need to complete the following two steps:
+***
+
+## Getting Started
+
+To start using this class you need to load the class and then initialize the class as seen in the code samples below:
+
 
 ### Class Loader
-First step is to load the class into your plugin.  
+First step is to load the class into your plugin or theme. This would typically appear in `functions.php` or in the `_construct` of your plugin Class.
+
 ```php
 include_once('vendor/connekt-plugin-installer/class-connekt-plugin-installer.php');
 ```
 
 
 ### Display
-Then build an array of plugin slugs and pass the array to the `Connekt_Plugin_Installer` class.
+Next you need to build an array of plugin slugs and pass the array to the `Connekt_Plugin_Installer` Class for display.
 
 ```php
 $plugin_array = array(   			
