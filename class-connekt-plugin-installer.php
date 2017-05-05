@@ -3,8 +3,8 @@
  * Connekt_Plugin_Installer
  *
  * @author   Darren Cooney
- * @repo     https://github.com/dcooney/connekt-plugin-installer/
- * @site     https://connekthq.com
+ * @link     https://github.com/dcooney/wordpress-plugin-installer
+ * @link     https://connekthq.com
  * @version  1.0
  */
 
