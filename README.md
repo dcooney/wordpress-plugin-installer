@@ -6,7 +6,7 @@ The installer displays a list of plugins that users can easily install and activ
 
 ![Connekt Plugin Installer Example](http://examples.connekthq.com/_gif/plugin-installer_2.gif)
 
-This is a perfect tool for plugin and theme developers who wan to make it as easy as possible for users to install recommened plugins.
+This is a perfect tool for plugin and theme developers who want to make it as easy as possible for users to install recommended or related plugins.
 
 To see a live example, install a copy of [Ajax Load More](https://wordpress.org/plugins/ajax-load-more/) and go to the Extensions section.
 
