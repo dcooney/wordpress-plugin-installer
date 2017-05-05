@@ -21,7 +21,7 @@ if( !class_exists('Connekt_Plugin_Installer') ) {
 			if(!defined('CNKT_INSTALLER_PATH')){
 				define('CNKT_INSTALLER_PATH', plugins_url('/', __FILE__));
 			}
-         add_action( 'admin_enqueue_scripts', array(&$this, 'enqueue_scripts' )); // Enqueue scripts
+         add_action( 'admin_enqueue_scripts', array(&$this, 'enqueue_scripts' )); // Enqueue scripts and localization
          add_action( 'wp_ajax_cnkt_plugin_installer', array(&$this, 'cnkt_plugin_installer' )); // Install plugin
          add_action( 'wp_ajax_cnkt_plugin_activation', array(&$this, 'cnkt_plugin_activation' )); // Activate
 
@@ -350,7 +350,7 @@ if( !class_exists('Connekt_Plugin_Installer') ) {
 
 	  /*
       * enqueue_scripts
-      * Enqueue admin scripts
+      * Enqueue admin scripts and scripts localization
       *
       *
       * @since 1.0
