@@ -7,7 +7,7 @@ A PHP Class for displaying a list of recommended or required plugins inside of t
 To display a list of plugins you need to complete the following two steps:
 
 ### Class Loader
-First step is to load the class into your plugin.
+First step is to load the class into your plugin.  
 `include_once('vendor/connekt-plugin-installer/class-connekt-plugin-installer.php');`
 
 
