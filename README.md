@@ -1,8 +1,12 @@
 # wordpress-plugin-installer
 
-A PHP Class for displaying a list of recommended or required plugins inside of the WordPress admin. 
+The Connekt Plugin Installer is Class for displaying a list of recommended or required plugins inside of a users WordPress admin. 
 
-![Example of Installer](http://examples.connekthq.com/_gif/plugin-installer.gif)
+The installer displays a list of plugins that users can easily install and activate directly for the screen they are currently viewing. 
+
+![Connekt Plugin Installer Example](http://examples.connekthq.com/_gif/plugin-installer_2.gif)
+
+This is a perfect tool for plugin and theme developers who want users to make it as easy as possible for users to install related plugins.
 
 
 **Plugins must be available on the wordpress.org plugin repository to be installed and activated using this class**
@@ -11,13 +15,15 @@ To display a list of plugins you need to complete the following two steps:
 
 ### Class Loader
 First step is to load the class into your plugin.  
-```include_once('vendor/connekt-plugin-installer/class-connekt-plugin-installer.php');```
+```php
+include_once('vendor/connekt-plugin-installer/class-connekt-plugin-installer.php');
+```
 
 
 ### Display
 Then build an array of plugin slugs and pass the array to the `Connekt_Plugin_Installer` class.
 
-```
+```php
 $plugin_array = array(   			
 	array(
 		'slug' => 'ajax-load-more',
