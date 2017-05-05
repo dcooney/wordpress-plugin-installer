@@ -2,6 +2,9 @@
 
 A PHP Class for displaying a list of recommended or required plugins inside of the WordPress admin. 
 
+![Example of Installer](http://examples.connekthq.com/_gif/plugin-installer.gif)
+
+
 **Plugins must be available on the wordpress.org plugin repository to be installed and activated using this class**
 
 To display a list of plugins you need to complete the following two steps:
