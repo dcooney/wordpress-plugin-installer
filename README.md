@@ -8,6 +8,8 @@ The installer displays a list of plugins that users can easily install and activ
 
 This is a perfect tool for plugin and theme developers who wan to make it as easy as possible for users to install recommened plugins.
 
+To see a live example, install a copy of [Ajax Load More](https://wordpress.org/plugins/ajax-load-more/) and go to the Extensions section.
+
 ***
 
 ## Getting Started
