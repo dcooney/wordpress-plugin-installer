@@ -1,14 +1,18 @@
 # wordpress-plugin-installer
 
-A PHP Class for displaying a list of recommended or required plugins inside of the WordPress admin.
+A PHP Class for displaying a list of recommended or required plugins inside of the WordPress admin. 
 
+**Plugins must be available on the wordpress.org plugin repository to be installed and activated using this class**
 
-## Class Loader
-Load the class...
+To display a list of plugins you need to complete the following two steps:
+
+### Class Loader
+First step is to load the class into your plugin.
 `include_once('vendor/connekt-plugin-installer/class-connekt-plugin-installer.php');`
 
 
-## DIsplay
+### Display
+Then build an array of plugin slugs and pass the array to the `Connekt_Plugin_Installer` class.
 
 ```
 $plugin_array = array(   			

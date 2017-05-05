@@ -7,29 +7,29 @@
  * @site     https://connekthq.com
  * @version  1.0
  */
- 
+
 
 if (!defined('ABSPATH')) exit;
 
 
 
 if( !class_exists('Connekt_Plugin_Installer') ) {
-   
-   class Connekt_Plugin_Installer {            
-      
+
+   class Connekt_Plugin_Installer {
+
       public function start(){
-         
+
          define('CNKT_INSTALLER_PATH', plugins_url('/', __FILE__));
          add_action( 'admin_enqueue_scripts', array(&$this, 'enqueue_scripts' )); // Enqueue scripts
          add_action( 'admin_head', array(&$this, 'localize_admin' )); // Localization scripts
          add_action( 'wp_ajax_cnkt_plugin_installer', array(&$this, 'cnkt_plugin_installer' )); // Install plugin
-         add_action( 'wp_ajax_cnkt_plugin_activation', array(&$this, 'cnkt_plugin_activation' )); // Activate 
-         
+         add_action( 'wp_ajax_cnkt_plugin_activation', array(&$this, 'cnkt_plugin_activation' )); // Activate
+
       }
-      
-      
-      
-      
+
+
+
+
       /*
       * init
       * Initialize the display of the plugins.
@@ -40,16 +40,16 @@ if( !class_exists('Connekt_Plugin_Installer') ) {
       * @since 1.0
       */
       public static function init($plugins){ ?>
-               
+
          <div class="cnkt-plugin-installer">
-         <?php   
-            require_once( ABSPATH . 'wp-admin/includes/plugin-install.php' );   		   
-   		   
+         <?php
+            require_once( ABSPATH . 'wp-admin/includes/plugin-install.php' );
+
    		   foreach($plugins as $plugin) :
-   
+
                $button_classes = 'install button';
                $button_text = __('Install Now', 'framework');
-                              
+
                $api = plugins_api( 'plugin_information',
                   array(
                      'slug' => sanitize_file_name($plugin['slug']),
@@ -68,19 +68,19 @@ if( !class_exists('Connekt_Plugin_Installer') ) {
                         'banners' => true,
                      ),
                   )
-               );    
-                                
-               //echo '<pre>';         
-               //print_r($api);               
-               //echo '</pre>';   
-               
-               
-					if ( !is_wp_error( $api ) ) { // confirm error free					        
-               
+               );
+
+               //echo '<pre>';
+               //print_r($api);
+               //echo '</pre>';
+
+
+					if ( !is_wp_error( $api ) ) { // confirm error free
+
 	               $main_plugin_file = Connekt_Plugin_Installer::get_plugin_file($plugin['slug']); // Get main plugin file
 	               //echo $main_plugin_file;
-	               if(self::check_file_extension($main_plugin_file)){ // check file extension                    
-	   	            if(is_plugin_active($main_plugin_file)){ 
+	               if(self::check_file_extension($main_plugin_file)){ // check file extension
+	   	            if(is_plugin_active($main_plugin_file)){
 	      	            // plugin activation confirmed
 	                  	$button_classes = 'button disabled';
 	                  	$button_text = __('Activated', 'framework');
@@ -88,21 +88,21 @@ if( !class_exists('Connekt_Plugin_Installer') ) {
 	                     // It's installed, let's activate it
 	                  	$button_classes = 'activate button button-primary';
 	                  	$button_text = __('Activate', 'framework');
-	                  }                  
+	                  }
 	               }
-	               
+
 	               // Send plugin data to template
-	               self::render_template($plugin, $api, $button_text, $button_classes);               
-               
-               }   
-               			   
+	               self::render_template($plugin, $api, $button_text, $button_classes);
+
+               }
+
    			endforeach;
    			?>
          </div>
       <?php
       }
-      
-      
+
+
 
 
 		/*
@@ -119,14 +119,14 @@ if( !class_exists('Connekt_Plugin_Installer') ) {
       */
       public static function render_template($plugin, $api, $button_text, $button_classes){
          ?>
-         <div class="plugin">   
+         <div class="plugin">
 		      <div class="plugin-wrap">
 			      <img src="<?php echo $api->icons['1x']; ?>" alt="">
                <h2><?php echo $api->name; ?></h2>
-               <p><?php echo $api->short_description; ?></p> 
-               
-               <p class="plugin-author"><?php _e('By', 'ajax-load-more'); ?> <?php echo $api->author; ?></p>                
-			   </div>   
+               <p><?php echo $api->short_description; ?></p>
+
+               <p class="plugin-author"><?php _e('By', 'ajax-load-more'); ?> <?php echo $api->author; ?></p>
+			   </div>
 			   <ul class="activation-row">
                <li>
                   <a class="<?php echo $button_classes; ?>"
@@ -241,12 +241,12 @@ if( !class_exists('Connekt_Plugin_Installer') ) {
 				die( __( 'Error - unable to verify nonce, please try again.', 'framework' ) );
 
 
-         // Include required libs for activation  
+         // Include required libs for activation
 			require_once( ABSPATH . 'wp-admin/includes/plugin-install.php' );
 			require_once( ABSPATH . 'wp-admin/includes/class-wp-upgrader.php' );
 			require_once( ABSPATH . 'wp-admin/includes/class-plugin-upgrader.php' );
-			
-			
+
+
 			// Get Plugin Info
 			$api = plugins_api( 'plugin_information',
 				array(
@@ -270,7 +270,7 @@ if( !class_exists('Connekt_Plugin_Installer') ) {
 
 
 			if($api->name){
-				$main_plugin_file = Connekt_Plugin_Installer::get_plugin_file($api->name);
+				$main_plugin_file = Connekt_Plugin_Installer::get_plugin_file($plugin);
 				$status = 'success';
 				if($main_plugin_file){
 					activate_plugin($main_plugin_file);
@@ -307,14 +307,14 @@ if( !class_exists('Connekt_Plugin_Installer') ) {
       public static function get_plugin_file( $plugin_slug ) {
          require_once( ABSPATH . '/wp-admin/includes/plugin.php' ); // Load plugin lib
          $plugins = get_plugins();
-         
+
          foreach( $plugins as $plugin_file => $plugin_info ) {
-	         
+
 	         // Get the basename of the plugin e.g. [askismet]/askismet.php
-	         $slug = dirname( plugin_basename( $plugin_file ) );	
-	                 
+	         $slug = dirname( plugin_basename( $plugin_file ) );
+
 	         if($slug){
-	            if ( $slug == $plugin_slug ) {	               
+	            if ( $slug == $plugin_slug ) {
 	               return $plugin_file; // If $slug = $plugin_name
 	            }
             }
