@@ -21,8 +21,7 @@ if( !class_exists('Connekt_Plugin_Installer') ) {
 			if(!defined('CNKT_INSTALLER_PATH')){
 				define('CNKT_INSTALLER_PATH', plugins_url('/', __FILE__));
 			}
-         add_action( 'admin_enqueue_scripts', array(&$this, 'enqueue_scripts' )); // Enqueue scripts
-         add_action( 'admin_head', array(&$this, 'localize_admin' )); // Localization scripts
+         add_action( 'admin_enqueue_scripts', array(&$this, 'enqueue_scripts' )); // Enqueue scripts and localization
          add_action( 'wp_ajax_cnkt_plugin_installer', array(&$this, 'cnkt_plugin_installer' )); // Install plugin
          add_action( 'wp_ajax_cnkt_plugin_activation', array(&$this, 'cnkt_plugin_activation' )); // Activate
 
@@ -349,41 +348,26 @@ if( !class_exists('Connekt_Plugin_Installer') ) {
 
 
 
-		/*
+	  /*
       * enqueue_scripts
-      * Enqueue admin scripts
+      * Enqueue admin scripts and scripts localization
       *
       *
       * @since 1.0
       */
       public function enqueue_scripts(){
          wp_enqueue_script( 'plugin-installer', CNKT_INSTALLER_PATH. 'assets/installer.js', array( 'jquery' ));
-         wp_enqueue_style( 'plugin-installer', CNKT_INSTALLER_PATH. 'assets/installer.css');
-      }
-
-
-
-
-      /*
-      *  localize_admin
-      *  Create admin variables and ajax nonce
-      *
-      *  @since 1.0
-      */
-      public function localize_admin() { ?>
-         <script type='text/javascript'>
-            /* <![CDATA[ */
-            var cnkt_installer_localize = <?php echo json_encode( array(
+		 wp_localize_script( 'plugin-installer', 'cnkt_installer_localize', array(
                'ajax_url' => admin_url('admin-ajax.php'),
                'admin_nonce' => wp_create_nonce('cnkt_installer_nonce'),
                'install_now' => __('Are you sure you want to install this plugin?', 'framework'),
                'install_btn' => __('Install Now', 'framework'),
                'activate_btn' => __('Activate', 'framework'),
                'installed_btn' => __('Activated', 'framework')
-            )); ?>
-            /* ]]> */
-      </script>
-      <?php }
+            ));
+		 
+         wp_enqueue_style( 'plugin-installer', CNKT_INSTALLER_PATH. 'assets/installer.css');
+      }
 
    }
 
