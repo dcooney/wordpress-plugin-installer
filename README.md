@@ -55,4 +55,4 @@ And that's it. Happy coding :)
 
 ## Notes
 - Plugins _must_ be available on the wordpress.org plugin repository to be installed and activated using this class.
-- Using this class outside of the plugins directory will require modification to the `CNKT_INSTALLER_PATH` constant for loading assets. You can define this constant in `functions.php` prior to loading the class. `define('CNKT_INSTALLER_PATH', get_template_directory_uri() .'/vendor')`;
+- Using this class outside of the plugins directory will require modification to the `CNKT_INSTALLER_PATH` constant for loading assets. You can define this constant in `functions.php` prior to loading the class. `define('CNKT_INSTALLER_PATH', get_template_directory_uri() .'/vendor/connekt-plugin-installer/')`;
