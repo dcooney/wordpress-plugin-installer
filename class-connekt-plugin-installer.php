@@ -22,9 +22,9 @@ if( !class_exists('Connekt_Plugin_Installer') ) {
 				// Update this constant to use outside the plugins directory
 				define('CNKT_INSTALLER_PATH', plugins_url('/', __FILE__));
 			}
-         add_action( 'admin_enqueue_scripts', array(&$this, 'enqueue_scripts' )); // Enqueue scripts and localization
+         add_action( 'admin_enqueue_scripts', array(&$this, 'enqueue_scripts' )); // Enqueue scripts and Localize
          add_action( 'wp_ajax_cnkt_plugin_installer', array(&$this, 'cnkt_plugin_installer' )); // Install plugin
-         add_action( 'wp_ajax_cnkt_plugin_activation', array(&$this, 'cnkt_plugin_activation' )); // Activate
+         add_action( 'wp_ajax_cnkt_plugin_activation', array(&$this, 'cnkt_plugin_activation' )); // Activate plugin
 
       }
 
@@ -82,7 +82,7 @@ if( !class_exists('Connekt_Plugin_Installer') ) {
 	               //echo $main_plugin_file;
 	               if(self::check_file_extension($main_plugin_file)){ // check file extension
 	   	            if(is_plugin_active($main_plugin_file)){
-	      	            // plugin activation confirmed
+	      	            // plugin activation, confirmed!
 	                  	$button_classes = 'button disabled';
 	                  	$button_text = __('Activated', 'framework');
 	                  } else {
