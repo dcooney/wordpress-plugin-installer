@@ -358,7 +358,7 @@ if( !class_exists('Connekt_Plugin_Installer') ) {
       */
       public function enqueue_scripts(){
          wp_enqueue_script( 'plugin-installer', CNKT_INSTALLER_PATH. 'assets/installer.js', array( 'jquery' ));
-		 wp_localize_script( 'plugin-installer', 'cnkt_installer_localize', array(
+			wp_localize_script( 'plugin-installer', 'cnkt_installer_localize', array(
                'ajax_url' => admin_url('admin-ajax.php'),
                'admin_nonce' => wp_create_nonce('cnkt_installer_nonce'),
                'install_now' => __('Are you sure you want to install this plugin?', 'framework'),
