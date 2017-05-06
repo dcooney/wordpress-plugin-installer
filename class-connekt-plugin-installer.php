@@ -19,6 +19,7 @@ if( !class_exists('Connekt_Plugin_Installer') ) {
 
       public function start(){
 			if(!defined('CNKT_INSTALLER_PATH')){
+				// Update this constant to use outside the plugins directory
 				define('CNKT_INSTALLER_PATH', plugins_url('/', __FILE__));
 			}
          add_action( 'admin_enqueue_scripts', array(&$this, 'enqueue_scripts' )); // Enqueue scripts and localization
