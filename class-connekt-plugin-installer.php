@@ -126,7 +126,7 @@ if( !class_exists('Connekt_Plugin_Installer') ) {
                <h2><?php echo $api->name; ?></h2>
                <p><?php echo $api->short_description; ?></p>
 
-               <p class="plugin-author"><?php _e('By', 'ajax-load-more'); ?> <?php echo $api->author; ?></p>
+               <p class="plugin-author"><?php _e('By', 'framework'); ?> <?php echo $api->author; ?></p>
 			   </div>
 			   <ul class="activation-row">
                <li>
@@ -139,7 +139,7 @@ if( !class_exists('Connekt_Plugin_Installer') ) {
                </li>
                <li>
                   <a href="https://wordpress.org/plugins/<?php echo $api->slug; ?>/" target="_blank">
-                     <?php _e('More Details', 'ajax-load-more'); ?>
+                     <?php _e('More Details', 'frameworks'); ?>
                   </a>
                </li>
             </ul>
