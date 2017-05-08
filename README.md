@@ -1,8 +1,8 @@
 # wordpress-plugin-installer
 
-The **Connekt Plugin Installer** is a class for displaying a list of recommended or related plugins inside of the WordPress admin. 
+The **Connekt Plugin Installer** is a class for displaying a list of recommended or related plugins inside of the WordPress admin.
 
-The installer displays a list of plugins that users can easily install and activate from the screen they are currently viewing. 
+The installer displays a list of plugins that users can easily install and activate from the screen they are currently viewing.
 
 ![Connekt Plugin Installer Example](http://examples.connekthq.com/_gif/plugin-installer_2.gif)
 
@@ -29,7 +29,7 @@ include_once('vendor/connekt-plugin-installer/class-connekt-plugin-installer.php
 Next, build an array of plugin slugs and pass the array to the `init` method for display.
 
 ```php
-$plugin_array = array(   			
+$plugin_array = array(
   array(
     'slug' => 'ajax-load-more',
   ),
@@ -43,7 +43,7 @@ $plugin_array = array(
     'slug' => 'easy-query'
   )
 );
-   			
+
 if(class_exists('Connekt_Plugin_Installer')){
   Connekt_Plugin_Installer::init($plugin_array);
 }
@@ -56,3 +56,7 @@ And that's it. Happy coding :)
 ## Notes
 - Plugins _must_ be available on the wordpress.org plugin repository to be installed and activated using this class.
 - Using this class outside of the plugins directory will require modification to the `CNKT_INSTALLER_PATH` constant for loading assets. You can define this constant in `functions.php` prior to loading the class. `define('CNKT_INSTALLER_PATH', get_template_directory_uri() .'/vendor/connekt-plugin-installer/')`;
+
+## License
+
+The code is available under the [GPLv2 license](https://github.com/dcooney/wordpress-plugin-installer/blob/master/LICENSE)
