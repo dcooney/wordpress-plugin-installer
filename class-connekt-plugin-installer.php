@@ -49,7 +49,7 @@ if( !class_exists('Connekt_Plugin_Installer') ) {
    		   foreach($plugins as $plugin) :
 
                $button_classes = 'install button';
-               $button_text = __('Install Now', 'framework');
+               $button_text = __('Install Now');
 
                $api = plugins_api( 'plugin_information',
                   array(
@@ -84,11 +84,11 @@ if( !class_exists('Connekt_Plugin_Installer') ) {
 	   	            if(is_plugin_active($main_plugin_file)){
 	      	            // plugin activation, confirmed!
 	                  	$button_classes = 'button disabled';
-	                  	$button_text = __('Activated', 'framework');
+	                  	$button_text = __('Activated');
 	                  } else {
 	                     // It's installed, let's activate it
 	                  	$button_classes = 'activate button button-primary';
-	                  	$button_text = __('Activate', 'framework');
+	                  	$button_text = __('Activate');
 	                  }
 	               }
 
@@ -126,7 +126,7 @@ if( !class_exists('Connekt_Plugin_Installer') ) {
                <h2><?php echo $api->name; ?></h2>
                <p><?php echo $api->short_description; ?></p>
 
-               <p class="plugin-author"><?php _e('By', 'framework'); ?> <?php echo $api->author; ?></p>
+               <p class="plugin-author"><?php printf(__('By %s'), $api->author ); ?></p>
 			   </div>
 			   <ul class="activation-row">
                <li>
@@ -139,7 +139,7 @@ if( !class_exists('Connekt_Plugin_Installer') ) {
                </li>
                <li>
                   <a href="https://wordpress.org/plugins/<?php echo $api->slug; ?>/" target="_blank">
-                     <?php _e('More Details', 'frameworks'); ?>
+                     <?php _e('More Details'); ?>
                   </a>
                </li>
             </ul>
@@ -161,14 +161,14 @@ if( !class_exists('Connekt_Plugin_Installer') ) {
 		public function cnkt_plugin_installer(){
 
 			if ( ! current_user_can('install_plugins') )
-				wp_die( __( 'Sorry, you are not allowed to install plugins on this site.', 'framework' ) );
+				wp_die( __( 'Sorry, you are not allowed to install plugins on this site.' ) );
 
 			$nonce = $_POST["nonce"];
 			$plugin = $_POST["plugin"];
 
 			// Check our nonce, if they don't match then bounce!
 			if (! wp_verify_nonce( $nonce, 'cnkt_installer_nonce' ))
-				wp_die( __( 'Error - unable to verify nonce, please try again.', 'framework') );
+				wp_die( __( 'Error - unable to verify nonce, please try again.' ) );
 
 
          // Include required libs for installation
@@ -204,7 +204,7 @@ if( !class_exists('Connekt_Plugin_Installer') ) {
 
 			if($api->name){
 				$status = 'success';
-				$msg = $api->name .' successfully installed.';
+				$msg = sprintf( __('Successfully installed the plugin <strong>%s %s</strong>.'), $api->name, '' );
 			} else {
 				$status = 'failed';
 				$msg = 'There was an error installing '. $api->name .'.';
@@ -232,14 +232,14 @@ if( !class_exists('Connekt_Plugin_Installer') ) {
       */
 		public function cnkt_plugin_activation(){
 			if ( ! current_user_can('install_plugins') )
-				wp_die( __( 'Sorry, you are not allowed to activate plugins on this site.', 'framework' ) );
+				wp_die( __( 'Sorry, you are not allowed to activate plugins for this site.' ) );
 
 			$nonce = $_POST["nonce"];
 			$plugin = $_POST["plugin"];
 
 			// Check our nonce, if they don't match then bounce!
 			if (! wp_verify_nonce( $nonce, 'cnkt_installer_nonce' ))
-				die( __( 'Error - unable to verify nonce, please try again.', 'framework' ) );
+				die( __( 'Error - unable to verify nonce, please try again.' ) );
 
 
          // Include required libs for activation
@@ -275,7 +275,7 @@ if( !class_exists('Connekt_Plugin_Installer') ) {
 				$status = 'success';
 				if($main_plugin_file){
 					activate_plugin($main_plugin_file);
-					$msg = $api->name .' successfully activated.';
+					$msg = $api->name . ' ' . __( 'Plugin <strong>activated</strong>.' );
 				}
 			} else {
 				$status = 'failed';
@@ -361,10 +361,10 @@ if( !class_exists('Connekt_Plugin_Installer') ) {
 			wp_localize_script( 'plugin-installer', 'cnkt_installer_localize', array(
                'ajax_url' => admin_url('admin-ajax.php'),
                'admin_nonce' => wp_create_nonce('cnkt_installer_nonce'),
-               'install_now' => __('Are you sure you want to install this plugin?', 'framework'),
-               'install_btn' => __('Install Now', 'framework'),
-               'activate_btn' => __('Activate', 'framework'),
-               'installed_btn' => __('Activated', 'framework')
+               'install_now' => __('Are you sure you want to install this plugin?'),
+               'install_btn' => __('Install Now'),
+               'activate_btn' => __('Activate'),
+               'installed_btn' => __('Activated')
             ));
 		 
          wp_enqueue_style( 'plugin-installer', CNKT_INSTALLER_PATH. 'assets/installer.css');
