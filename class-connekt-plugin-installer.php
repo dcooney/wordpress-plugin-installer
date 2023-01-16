@@ -36,7 +36,7 @@ if ( ! class_exists( 'Connekt_Plugin_Installer' ) ) {
 		 * @return void
 		 */
 		public function start() {
-			add_action( 'admin_enqueue_scripts', [ &$this, 'cnkt_enqueue_scripts' ] );
+			add_action( 'cnkt_installer_enqueue_scripts', [ &$this, 'cnkt_installer_enqueue_scripts' ] );
 			add_action( 'wp_ajax_cnkt_plugin_installer', [ &$this, 'cnkt_plugin_installer' ] );
 			add_action( 'wp_ajax_cnkt_plugin_activation', [ &$this, 'cnkt_plugin_activation' ] );
 		}
@@ -47,7 +47,10 @@ if ( ! class_exists( 'Connekt_Plugin_Installer' ) ) {
 		 * @since 1.0
 		 * @param array $plugins The array plugin data for display.
 		 */
-		public static function init( $plugins ) { ?>
+		public static function init( $plugins ) {
+			// Add the required plugin scripts.
+			do_action( 'cnkt_installer_enqueue_scripts' );
+			?>
 		<div class="cnkt-plugin-installer">
 			<?php
 			require_once ABSPATH . 'wp-admin/includes/plugin-install.php';
@@ -331,7 +334,7 @@ if ( ! class_exists( 'Connekt_Plugin_Installer' ) ) {
 		 *
 		 * @since 1.0
 		 */
-		public function cnkt_enqueue_scripts() {
+		public function cnkt_installer_enqueue_scripts() {
 			wp_enqueue_script( 'plugin-installer', CNKT_INSTALLER_PATH . 'assets/installer.js', [ 'jquery' ], CNKT_INSTALLER_VERSION, false );
 			wp_localize_script(
 				'plugin-installer',
