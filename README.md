@@ -16,36 +16,36 @@ To see a live example, install a copy of [Ajax Load More](https://wordpress.org/
 
 To get started, you'll simply need to load and initialize the class. The installer provides the required CSS and JS for display and functionality.
 
-
 ### Class Loader
+
 First step is to load the class into your plugin or theme. This would typically appear in `functions.php` or in the `_construct` of your plugin Class.
 
 ```php
 include_once('vendor/connekt-plugin-installer/class-connekt-plugin-installer.php');
 ```
 
-
 ### Display
+
 Next, build an array of plugin slugs and pass the array to the `init` method for display.
 
 ```php
-$plugin_array = array(
-  array(
+$plugins = [
+  [
     'slug' => 'ajax-load-more',
-  ),
-  array(
-    'slug' => 'velocity',
-  ),
-  array(
+  ],
+  [
+    'slug' => 'block-manager',
+  ],
+  [
     'slug' => 'instant-images'
-  ),
-  array(
+  ],
+  [
     'slug' => 'easy-query'
-  )
-);
+  ]
+]; 
 
-if(class_exists('Connekt_Plugin_Installer')){
-  Connekt_Plugin_Installer::init($plugin_array);
+if( class_exists( 'Connekt_Plugin_Installer' ) ) {
+  Connekt_Plugin_Installer::init( $plugins );
 }
 ```
 
@@ -54,8 +54,16 @@ And that's it. Happy coding :)
 ***
 
 ## Notes
+
 - Plugins _must_ be available on the wordpress.org plugin repository to be installed and activated using this class.
 - Using this class outside of the plugins directory will require modification to the `CNKT_INSTALLER_PATH` constant for loading assets. You can define this constant in `functions.php` prior to loading the class. `define('CNKT_INSTALLER_PATH', get_template_directory_uri() .'/vendor/connekt-plugin-installer/')`;
+
+## Changelong
+
+1.0.1 - Janaury 16, 2025
+
+- UPDATE: Code cleanup and PHPCS fixes.
+- FIX: Fixed issue with broken layout if wordpress.org thumbnail not available.
 
 ## License
 
