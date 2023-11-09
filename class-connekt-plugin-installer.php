@@ -5,7 +5,7 @@
  * @author  Darren Cooney
  * @link    https://github.com/dcooney/wordpress-plugin-installer
  * @link    https://connekthq.com
- * @version 1.0.1
+ * @version 1.0.2
  *
  * @package Connekt_Plugin_Installer
  */
@@ -19,9 +19,8 @@ if ( ! defined( 'CNKT_INSTALLER_PATH' ) ) {
 }
 
 if ( ! defined( 'CNKT_INSTALLER_VERSION' ) ) {
-	define( 'CNKT_INSTALLER_VERSION', '1.0.1' );
+	define( 'CNKT_INSTALLER_VERSION', '1.0.2' );
 }
-
 
 if ( ! class_exists( 'Connekt_Plugin_Installer' ) ) {
 
@@ -82,12 +81,10 @@ if ( ! class_exists( 'Connekt_Plugin_Installer' ) ) {
 				);
 
 				if ( ! is_wp_error( $api ) ) {
-					// Confirm no errors.
-
 					$main_plugin_file = self::get_plugin_file( $plugin['slug'] ); // Get main plugin file.
 
-					if ( self::check_file_extension( $main_plugin_file ) ) {
-						// check file extension.
+					// Plugin is installed.
+					if ( $main_plugin_file ) {
 						if ( is_plugin_active( $main_plugin_file ) ) {
 							// plugin activated.
 							$button_classes = 'button disabled';
@@ -311,24 +308,7 @@ if ( ! class_exists( 'Connekt_Plugin_Installer' ) ) {
 				}
 			}
 		}
-
-		/**
-		 * Helper function to check file extension.
-		 *
-		 * @since 1.0
-		 * @param string $filename The filename of the plugin.
-		 * @return boolean
-		 */
-		public static function check_file_extension( $filename ) {
-			if ( substr( strrchr( $filename, '.' ), 1 ) === 'php' ) {
-				// has .php exension.
-				return true;
-			} else {
-				// ./wp-content/plugins.
-				return false;
-			}
-		}
-
+ 
 		/**
 		 * Enqueue admin scripts and scripts localization.
 		 *
